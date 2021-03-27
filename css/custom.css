@@ -4,14 +4,19 @@
   src: url('/fonts/shou.ttf');
   font-display: swap;
 }
+@font-face {
+  font-family: 'Caveat-Regular';
+  src: url('/fonts/Caveat-Regular.ttf');
+  font-display: swap;
+}
 h1#site-title {
-    font-family:shou!important
+    font-family:'Caveat-Regular', 'shou';
 }
 span#subtitle {
     font-family:shou!important
 }
 a#site-name {
-    font-family:shou!important
+    font-family:Caveat-Regular!important
 }
 div#menus {
     font-family:shou!important
