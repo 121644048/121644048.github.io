@@ -3440,7 +3440,7 @@ li.categoryBar-list-item:nth-child(6) {
   background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover6.webp');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
-  content: 'hexo美化教程' !important;
+  content: 'Hexo美化记录' !important;
 }
 li.categoryBar-list-item:nth-child(2)>span::after {
   content: '杂谈教程' !important;
