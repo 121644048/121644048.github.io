@@ -5,8 +5,8 @@
     
     <entry>
       <title>关于一图流指定不同页面背景</title>
-      <link href="2021/03/30/1_2_bei_jing/"/>
-      <url>2021/03/30/1_2_bei_jing/</url>
+      <link href="posts/43709.html"/>
+      <url>posts/43709.html</url>
       
         <content type="html"><![CDATA[<h2 id="问题起由"><a href="#问题起由" class="headerlink" title="问题起由"></a>问题起由</h2><p>在根据AKliar大佬的教程进行<a href="https://akilar.top/posts/ebf20e02/">背景一图流</a>更改时发现在不同页面只能显示同一张背景图，而随机背景方法也不能达到预期效果，因此有没有一种办法可以实现不同页面实现不同背景呢？</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>通过AKliar的指导实现了一种暂时不完美的解决办法，即在不同页面和文章的md文件中加上一段js脚本：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;web_bg&quot;</span>).style.backgroundImage = <span class="string">&quot;url(xxx)&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>其中xxx填写背景图片链接，之所以说不完美是因为在没有md文件的页面，比如主页、分类、标签、归档页面，因为没有相应的js脚本而保持上一个页面的背景。针对这一点AKliar将出现新的教程。</p><h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><div class="tag link"><a class="link-card" title="糖果屋教程贴" href="https://akilar.top/posts/ebf20e02/"><div class="left"><img src="https://cdn.jsdelivr.net/gh/Akilarlxh/akilarlxh.github.io/img/siteicon/favicon.ico"/></div><div class="right"><p class="text">糖果屋教程贴</p><p class="url">https://akilar.top/posts/ebf20e02/</p></div></a></div>]]></content>
       
@@ -32,8 +32,8 @@
     
     <entry>
       <title></title>
-      <link href="2021/03/30/1_6_kan_ban_niang/"/>
-      <url>2021/03/30/1_6_kan_ban_niang/</url>
+      <link href="posts/2.html"/>
+      <url>posts/2.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -45,8 +45,8 @@
     
     <entry>
       <title></title>
-      <link href="2021/03/30/1_5_you_lian_bug/"/>
-      <url>2021/03/30/1_5_you_lian_bug/</url>
+      <link href="posts/1.html"/>
+      <url>posts/1.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -58,8 +58,8 @@
     
     <entry>
       <title></title>
-      <link href="2021/03/30/1_4_ding_wei_ka_pian/"/>
-      <url>2021/03/30/1_4_ding_wei_ka_pian/</url>
+      <link href="posts/3.html"/>
+      <url>posts/3.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -71,8 +71,8 @@
     
     <entry>
       <title></title>
-      <link href="2021/03/30/1_3_bei_jing_tou_ming/"/>
-      <url>2021/03/30/1_3_bei_jing_tou_ming/</url>
+      <link href="posts/4.html"/>
+      <url>posts/4.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -84,8 +84,8 @@
     
     <entry>
       <title>随笔</title>
-      <link href="2021/03/29/2_1_ge_ren_sui_bi/"/>
-      <url>2021/03/29/2_1_ge_ren_sui_bi/</url>
+      <link href="posts/43432.html"/>
+      <url>posts/43432.html</url>
       
         <content type="html"><![CDATA[<p>就看过很快就</p>]]></content>
       
@@ -109,8 +109,8 @@
     
     <entry>
       <title>学习</title>
-      <link href="2021/03/29/4_1_zhuan_ye_xue_xi/"/>
-      <url>2021/03/29/4_1_zhuan_ye_xue_xi/</url>
+      <link href="posts/47786.html"/>
+      <url>posts/47786.html</url>
       
         <content type="html"><![CDATA[<p>就看过很快就</p>]]></content>
       
@@ -134,8 +134,8 @@
     
     <entry>
       <title>强化</title>
-      <link href="2021/03/28/3_1_neng_li_qiang_hua/"/>
-      <url>2021/03/28/3_1_neng_li_qiang_hua/</url>
+      <link href="posts/44951.html"/>
+      <url>posts/44951.html</url>
       
         <content type="html"><![CDATA[<p>就看过很快就</p>]]></content>
       
@@ -159,8 +159,8 @@
     
     <entry>
       <title>Hello World</title>
-      <link href="2021/03/24/1_1_hello_world/"/>
-      <url>2021/03/24/1_1_hello_world/</url>
+      <link href="posts/16107.html"/>
+      <url>posts/16107.html</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
