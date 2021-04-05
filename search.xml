@@ -4,16 +4,66 @@
   
     
     <entry>
-      <title>关于一图流指定不同页面背景</title>
-      <link href="posts/43709.html"/>
-      <url>posts/43709.html</url>
+      <title>看板娘位置调整</title>
+      <link href="posts/219c.html"/>
+      <url>posts/219c.html</url>
       
-        <content type="html"><![CDATA[<h2 id="问题起由"><a href="#问题起由" class="headerlink" title="问题起由"></a>问题起由</h2><p>在根据AKliar大佬的教程进行<a href="https://akilar.top/posts/ebf20e02/">背景一图流</a>更改时发现在不同页面只能显示同一张背景图，而随机背景方法也不能达到预期效果，因此有没有一种办法可以实现不同页面实现不同背景呢？</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>通过AKliar的指导实现了一种暂时不完美的解决办法，即在不同页面和文章的md文件中加上一段js脚本：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;web_bg&quot;</span>).style.backgroundImage = <span class="string">&quot;url(xxx)&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>其中xxx填写背景图片链接，之所以说不完美是因为在没有md文件的页面，比如主页、分类、标签、归档页面，因为没有相应的js脚本而保持上一个页面的背景。针对这一点AKliar将出现新的教程。</p><h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><div class="tag link"><a class="link-card" title="糖果屋教程贴" href="https://akilar.top/posts/ebf20e02/"><div class="left"><img src="https://cdn.jsdelivr.net/gh/Akilarlxh/akilarlxh.github.io/img/siteicon/favicon.ico"/></div><div class="right"><p class="text">糖果屋教程贴</p><p class="url">https://akilar.top/posts/ebf20e02/</p></div></a></div>]]></content>
+        <content type="html"><![CDATA[<h2 id="问题起由"><a href="#问题起由" class="headerlink" title="问题起由"></a>问题起由</h2><p>在添加aplayer与看板娘之后，由于它们的默认位置都在左下角，因此需要将看板娘调整为右下角。</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>打开<code>\themes\butterfly\source\live2d-widget\</code>目录下的<code>waifu.css</code>文件找到</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#waifu</span> &#123;</span><br><span class="line"><span class="attribute">bottom</span>: -<span class="number">1000px</span>;</span><br><span class="line"><span class="attribute">left</span>: <span class="number">30px</span>;</span><br><span class="line"><span class="attribute">line-height</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attribute">margin-bottom</span>: -<span class="number">10px</span>;</span><br><span class="line"><span class="attribute">position</span>: fixed;</span><br><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">3px</span>);</span><br><span class="line"><span class="attribute">transition</span>: transform .<span class="number">3s</span> ease-in-out, bottom <span class="number">3s</span> ease-in-out;</span><br><span class="line"><span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>将<code>left</code>改为<code>right</code>距离可以根据自身需求进行调整。</p><h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><div class="tag link"><a class="link-card" title="糖果屋教程贴" href="https://akilar.top/posts/5b8f515f/"><div class="left"><img src="https://cdn.jsdelivr.net/gh/Akilarlxh/akilarlxh.github.io/img/siteicon/favicon.ico"/></div><div class="right"><p class="text">糖果屋教程贴</p><p class="url">https://akilar.top/posts/5b8f515f/</p></div></a></div>]]></content>
       
       
       <categories>
           
-          <category> Hexo美化 </category>
+          <category> Butterfly主题美化 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 看板娘 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Butterfly主题中定位具体卡片</title>
+      <link href="posts/cee8.html"/>
+      <url>posts/cee8.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题起由"><a href="#问题起由" class="headerlink" title="问题起由"></a>问题起由</h2><p>最近学习了许多卡片透明和隐藏的教程，然而对我这种没有语法基础的小白来说要实现指定卡片的透明与隐藏比较困难，那到底应该如何定位卡片呢？</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>在小嘉的教程中有一段背景透明的css脚本：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#recent-posts</span>&gt;<span class="selector-class">.recent-post-item</span>,<span class="selector-class">.layout_page</span>&gt;<span class="selector-tag">div</span><span class="selector-pseudo">:first</span>-child<span class="selector-pseudo">:not</span>(<span class="selector-class">.recent-posts</span>),<span class="selector-class">.layout_post</span>&gt;<span class="selector-id">#page</span>,<span class="selector-class">.layout_post</span>&gt;<span class="selector-id">#post</span>,<span class="selector-class">.read-mode</span> <span class="selector-class">.layout_post</span>&gt;<span class="selector-id">#post</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--light_bg_color)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#aside-content</span> <span class="selector-class">.card-widget</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--light_bg_color)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#web_bg</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="number">90deg</span>,<span class="built_in">rgba</span>(<span class="number">247</span>,<span class="number">149</span>,<span class="number">51</span>,.<span class="number">1</span>),<span class="built_in">rgba</span>(<span class="number">243</span>,<span class="number">112</span>,<span class="number">85</span>,.<span class="number">1</span>) <span class="number">15%</span>,<span class="built_in">rgba</span>(<span class="number">239</span>,<span class="number">78</span>,<span class="number">123</span>,.<span class="number">1</span>) <span class="number">30%</span>,<span class="built_in">rgba</span>(<span class="number">161</span>,<span class="number">102</span>,<span class="number">171</span>,.<span class="number">1</span>) <span class="number">44%</span>,<span class="built_in">rgba</span>(<span class="number">80</span>,<span class="number">115</span>,<span class="number">184</span>,.<span class="number">1</span>) <span class="number">58%</span>,<span class="built_in">rgba</span>(<span class="number">16</span>,<span class="number">152</span>,<span class="number">173</span>,.<span class="number">1</span>) <span class="number">72%</span>,<span class="built_in">rgba</span>(<span class="number">7</span>,<span class="number">179</span>,<span class="number">155</span>,.<span class="number">1</span>) <span class="number">86%</span>,<span class="built_in">rgba</span>(<span class="number">109</span>,<span class="number">186</span>,<span class="number">130</span>,.<span class="number">1</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>可以看到，要想定位到自己需要隐藏或者透明的卡片，需要一层一层指定名称，卡片的名称获取可以F12在控制台中找到。例如，我现在要对右侧的分类和归档卡片进行隐藏，首先在控制台中找到该卡片对应的代码位置，然后向上找到该卡片类所属最近的id名称，再依次向下指定，直到该卡片class为止。向下指定需用<code>&gt;.</code>，如果同级有多个隐藏对象，可用<code>,</code>隔开。具体写法参考一下代码：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#aside-content</span>&gt;<span class="selector-class">.sticky_layout</span>&gt;<span class="selector-class">.card-widget</span><span class="selector-class">.card-categories</span>,<span class="selector-class">.card-archives</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none<span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><div class="tag link"><a class="link-card" title="小嘉美化" href="https://blog.imzjw.cn/posts/b74f504f/"><div class="left"><img src="https://cdn.jsdelivr.net/gh/zjwo/CDN/img/blog/avatar.jpg"/></div><div class="right"><p class="text">小嘉美化</p><p class="url">https://blog.imzjw.cn/posts/b74f504f/</p></div></a></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> Butterfly主题美化 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 定位卡片 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于一图流指定不同页面背景</title>
+      <link href="posts/43709.html"/>
+      <url>posts/43709.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="问题起由"><a href="#问题起由" class="headerlink" title="问题起由"></a>问题起由</h2><p>在根据AKliar大佬的教程进行<a href="https://akilar.top/posts/ebf20e02/">背景一图流</a>更改时发现在不同页面只能显示同一张背景图，而随机背景方法也不能达到预期效果，因此有没有一种办法可以实现不同页面实现不同背景呢？</p><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>通过AKliar的指导实现了一种暂时不完美的解决办法，即在不同页面和文章的md文件中加上一段js脚本：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;web_bg&quot;</span>).style.backgroundImage = <span class="string">&quot;url(xxx)&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>其中xxx填写背景图片链接，之所以说不完美是因为在没有md文件的页面，比如主页、分类、标签、归档页面，因为没有相应的js脚本而保持上一个页面的背景。针对这一点AKliar将出现新的教程。</p><p>更新：AKliar的教程贴已经更新，点击参考教程查看</p><h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><div class="tag link"><a class="link-card" title="糖果屋教程贴" href="https://akilar.top/posts/ebf20e02/"><div class="left"><img src="https://cdn.jsdelivr.net/gh/Akilarlxh/akilarlxh.github.io/img/siteicon/favicon.ico"/></div><div class="right"><p class="text">糖果屋教程贴</p><p class="url">https://akilar.top/posts/ebf20e02/</p></div></a></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> Butterfly主题美化 </category>
           
       </categories>
       
@@ -25,58 +75,6 @@
             <tag> 背景 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="posts/2.html"/>
-      <url>posts/2.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="posts/1.html"/>
-      <url>posts/1.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="posts/3.html"/>
-      <url>posts/3.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="posts/4.html"/>
-      <url>posts/4.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
       
     </entry>
     
@@ -167,7 +165,7 @@
       
       <categories>
           
-          <category> Hexo美化 </category>
+          <category> Butterfly主题美化 </category>
           
       </categories>
       
