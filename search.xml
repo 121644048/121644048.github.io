@@ -81,31 +81,6 @@
     
     
     <entry>
-      <title>学习</title>
-      <link href="posts/47786.html"/>
-      <url>posts/47786.html</url>
-      
-        <content type="html"><![CDATA[<p>就看过很快就</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 专业学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 专业 学习 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>随笔</title>
       <link href="posts/43432.html"/>
       <url>posts/43432.html</url>
@@ -123,6 +98,31 @@
         <tags>
             
             <tag> 个人 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>学习</title>
+      <link href="posts/47786.html"/>
+      <url>posts/47786.html</url>
+      
+        <content type="html"><![CDATA[<p>就看过很快就</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 专业学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 专业 学习 </tag>
             
         </tags>
       
