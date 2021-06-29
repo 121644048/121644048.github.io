@@ -3453,16 +3453,16 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://cdn.pixabay.com/photo/2013/01/04/20/02/street-chalk-73583_1280.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/1.jpg');
 }
 li.categoryBar-list-item:nth-child(2) {
-  background: url('https://cdn.pixabay.com/photo/2021/01/09/12/12/electronic-5902163_1280.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/25.jpg');
 }
 li.categoryBar-list-item:nth-child(3) {
-  background: url('https://cdn.pixabay.com/photo/2015/05/31/15/08/blank-792125_1280.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/28.jpg');
 }
 li.categoryBar-list-item:nth-child(4) {
-  background: url('https://cdn.pixabay.com/photo/2016/12/14/21/39/girl-1907551_1280.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/29.jpg');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
   content: '小白的美化教程' !important;
