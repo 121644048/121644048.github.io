@@ -1362,7 +1362,7 @@ input::placeholder {
   z-index: -999;
   width: 100%;
   height: 100%;
-  background: url("https://gitee.com/caobaoning/picture/raw/master/%E4%B8%BB%E9%A1%B52.jpg");
+  background: url("https://picture-1304304669.cos.ap-nanjing.myqcloud.com/zhuye.jpg");
   background-attachment: local;
   background-position: center;
   -webkit-background-size: cover;
@@ -3453,16 +3453,16 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/1.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/fenlei1.jpg');
 }
 li.categoryBar-list-item:nth-child(2) {
-  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/25.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/fenlei25.jpg');
 }
 li.categoryBar-list-item:nth-child(3) {
-  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/28.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/fenlei28.jpg');
 }
 li.categoryBar-list-item:nth-child(4) {
-  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/29.jpg');
+  background: url('https://picture-1304304669.cos.ap-nanjing.myqcloud.com/fenlei29.jpg');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
   content: '小白的美化教程' !important;
