@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Pytorch中LSTM输入输出的参数含义</title>
+      <link href="posts/8ed.html"/>
+      <url>posts/8ed.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Pytorch-LSTM源码"><a href="#Pytorch-LSTM源码" class="headerlink" title="Pytorch LSTM源码"></a>Pytorch LSTM源码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RNNBase</span>(<span class="params">Module</span>):</span></span><br><span class="line">...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, mode, input_size, hidden_size,</span></span></span><br><span class="line"><span class="function"><span class="params">                 num_layers=<span class="number">1</span>, bias=<span class="literal">True</span>, batch_first=<span class="literal">False</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 dropout=<span class="number">0.</span>, bidirectional=<span class="literal">False</span></span>):</span></span><br></pre></td></tr></table></figure><h3 id="初始化函数参数含义"><a href="#初始化函数参数含义" class="headerlink" title="初始化函数参数含义"></a>初始化函数参数含义</h3><ul><li><strong>input_size</strong> – 输入数据的大小，即词向量维度或者股票数据自变量的维度，如最低价、最高价等。</li><li><strong>hidden_size</strong> – 隐藏层的大小（即隐藏层节点数量）。</li><li><strong>num_layers</strong> – LSTM层数量，默认等于1。</li><li><strong>bias</strong> – 偏置。</li><li><strong>batch_first</strong> – 为<code>True</code>时，<code>batch_size</code>处于第一维度（<code>h_n</code>与<code>c_n</code>维度顺序不受影响），默认为<code>False</code>。</li><li><strong>dropout</strong> – 如果非0，就在除了最后一层的其它层都插入<code>Dropout</code>层，默认为0。</li><li><strong>bidirectional</strong> – 为<code>True</code>时是双向LSTM，即BiLSTM，默认为<code>False</code>。</li></ul><h3 id="输入数据格式"><a href="#输入数据格式" class="headerlink" title="输入数据格式"></a>输入数据格式</h3><h4 id="input-seq-len-batch-size-input-size"><a href="#input-seq-len-batch-size-input-size" class="headerlink" title="input(seq_len, batch_size, input_size)"></a>input(seq_len, batch_size, input_size)</h4><ul><li><strong>seq_len/time_step</strong> –序列的长度 ，即句子的长度或单位数据的股票数据条数。</li><li><strong>batch_size</strong> – 批次大小 ，即句子的条数或n个时间单位的股票数据。</li><li><strong>input_size</strong> – 同初始化参数</li></ul><h4 id="h-0-num-layers-num-directions-batch-size-hidden-size"><a href="#h-0-num-layers-num-directions-batch-size-hidden-size" class="headerlink" title="h_0(num_layers * num_directions, batch_size, hidden_size)"></a>h_0(num_layers * num_directions, batch_size, hidden_size)</h4><ul><li><strong>num_layers * num_directions</strong>， 即LSTM的层数乘以方向数量。这个方向数量是由前面介绍的<code>bidirectional</code>决定，如果为<code>False</code>,则等于1；反之等于2。</li><li><strong>batch_size</strong>：同上。</li><li><strong>hidden_size</strong>: 隐藏层节点数。</li></ul><h4 id="c-0-num-layers-num-directions-batch-s。ize-hidden-size"><a href="#c-0-num-layers-num-directions-batch-s。ize-hidden-size" class="headerlink" title="c_0(num_layers * num_directions, batch_s。ize, hidden_size)"></a>c_0(num_layers * num_directions, batch_s。ize, hidden_size)</h4><p>同h0。</p><h3 id="输出数据格式"><a href="#输出数据格式" class="headerlink" title="输出数据格式"></a>输出数据格式</h3><h4 id="output-seq-len-batch-size-num-directions-hidden-size"><a href="#output-seq-len-batch-size-num-directions-hidden-size" class="headerlink" title="output(seq_len, batch_size, num_directions * hidden_size)"></a>output(seq_len, batch_size, num_directions * hidden_size)</h4><p>这个输出tensor包含了LSTM模型最后一层每个<code>time step</code>的输出特征。</p><h4 id="h-n-num-layers-num-directions-batch-size-hidden-size"><a href="#h-n-num-layers-num-directions-batch-size-hidden-size" class="headerlink" title="h_n(num_layers * num_directions, batch_size, hidden_size)"></a>h_n(num_layers * num_directions, batch_size, hidden_size)</h4><p>只会输出最后个<code>time step</code>的隐状态结果。</p><h4 id="c-n-：-num-layers-num-directions-batch-hidden-size"><a href="#c-n-：-num-layers-num-directions-batch-hidden-size" class="headerlink" title="c_n ：(num_layers * num_directions, batch, hidden_size)"></a>c_n ：(num_layers * num_directions, batch, hidden_size)</h4><p>只会输出最后个<code>time step</code>的cell状态结果。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/SjnTl.png" alt="SjnTl"></p><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://zhuanlan.zhihu.com/p/100360301">理解Pytorch中LSTM的输入输出参数含义 - 知乎 (zhihu.com)</a></p><p><a href="https://zhuanlan.zhihu.com/p/41261640">Pytorch的LSTM的理解 - 知乎 (zhihu.com)</a></p><p><a href="https://stackoverflow.com/questions/48302810/whats-the-difference-between-hidden-and-output-in-pytorch-lstm/48305882#48305882">deep learning - What’s the difference between “hidden” and “output” in PyTorch LSTM? - Stack Overflow</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 专业学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 循环神经网络 LSTM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用Web-push进行文章推送</title>
       <link href="posts/da60.html"/>
       <url>posts/da60.html</url>
