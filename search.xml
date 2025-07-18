@@ -108,31 +108,6 @@
     
     
     <entry>
-      <title>深度可分离卷积</title>
-      <link href="posts/47786.html"/>
-      <url>posts/47786.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近写论文过程中用到了轻量级网络，其中深度可分离卷积可以大幅减少传统卷积的参数。本文记录深度可分离卷积的原理和参数计算。</p><h3 id="FLOPs与参数量"><a href="#FLOPs与参数量" class="headerlink" title="FLOPs与参数量"></a>FLOPs与参数量</h3><p><strong>FLOPs</strong>   用来衡量模型的时间复杂度，即计算机的算力。</p><ul><li>卷积层计算方式：$(2\times C_{in}\times k^{2}- 1) \times H\times W\times  C_{out}  = (C_{in}\times k^{2}- 1+ C_{in}\times k^{2})\times H\times W\times  C_{out}$，$C_{in}$输入通道，$C_{out}$输出通道，$k$为卷积大小，$H$和$W$分别为特征图的高和宽，当无偏置时，有$-1$，有偏置，无$-1$。</li><li>全连接层计算方式：$(2\times N_{in}-1)\times N_{out} $，$N_{in}$为输入神经元数，$N_{out}$为输出神经元数。</li><li>LSTM层计算方式：$(E+H) \times H \times 4 \times2$，$E$为词向量维度，即$Input _ size$，$H$为隐藏神经元个数，即$Hidden _ size$。</li><li>GRU层计算方式：$(E+H) \times H \times 3 \times2$。</li></ul><p><strong>参数量</strong>  用来衡量模型的空间复杂度，即内存资源的消耗。</p><ul><li>卷积层计算方式：$( C_{in}\times k^{2}+ 1)\times  C_{out}$，当无偏置时，无$+1$，有偏置，有$+1$。</li><li>全连接层计算方式：$( N_{in}+1)\times N_{out} $。</li><li>LSTM层计算方式：$((E+H \times H) +H)\times 4$。</li><li>GRU层计算方式：$((E+H \times H) +H)\times 3$。</li></ul><h3 id="常规卷积"><a href="#常规卷积" class="headerlink" title="常规卷积"></a>常规卷积</h3><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,6,kernel=3,padding=1,stride=1,groups=1，bias=False)</code>，输出：<code>(1,6,5,5)</code>，FLOPs：<code>(2×4×3×3-1)×5×5×6=10650</code>，参数量：<code>(4×3×3+0)×6=216</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE1.svg" alt="绘图1"></p><h3 id="分组卷积（Group-Convolution）"><a href="#分组卷积（Group-Convolution）" class="headerlink" title="分组卷积（Group Convolution）"></a>分组卷积（<strong>Group Convolution</strong>）</h3><p>分组卷积,即ResNeXt,是受到Inception和AlexNet的启发。Inception 的论文中提到,对于卷积来说,卷积核可以看做一个<strong>三维的滤波器</strong>:通道维+空间维(Feature Map 的宽和高),常规的卷积操作其实就是实现<strong>通道相关性</strong>和<strong>空间相关性</strong>的<strong>联合映射</strong>。Inception 模块的背后存在这样的一种假设:卷积层通道间的相关性和空间相关性是可以<strong>退耦合</strong>的,将它们分开映射,能达到更好的效果.具体来说,经过不同卷积路径得到的特征图之间的耦合性较低,关注的主要特征不同,可以得到互为补充的特征图,以更完整的表示图像。</p><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,6,kernel=3,padding=1,stride=1,groups=2，bias=False)</code>，输出：<code>(1,6,5,5)</code>，FLOPs：<code>(2×2×3×3-1)×5×5×1×3×2=5250</code>，参数量：<code>(2×3×3+0)×1×3×2=108</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE2.svg" alt="绘图2"></p><h3 id="深度可分离卷积（Depthwise-Separable-Convolution）"><a href="#深度可分离卷积（Depthwise-Separable-Convolution）" class="headerlink" title="深度可分离卷积（Depthwise Separable Convolution）"></a>深度可分离卷积（<strong>Depthwise Separable Convolution</strong>）</h3><h4 id="逐通道卷积（Depthwise-Convolution）"><a href="#逐通道卷积（Depthwise-Convolution）" class="headerlink" title="逐通道卷积（Depthwise Convolution）"></a>逐通道卷积（Depthwise Convolution）</h4><p>逐通道卷积的实质就是输出通道和分组等于输入通道的分组卷积。</p><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,4,kernel=3,padding=1,stride=1,groups=4，bias=False)</code>，输出：<code>(1,4,5,5)</code>，FLOPs：<code>(2×1×3×3-1)×5×5×1×4=1700</code>，参数量：<code>(1×3×3+0)×1×4=36</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE3.svg" alt="绘图3"></p><h4 id="逐点卷积（Pointwise-Convolution）"><a href="#逐点卷积（Pointwise-Convolution）" class="headerlink" title="逐点卷积（Pointwise Convolution）"></a>逐点卷积（Pointwise Convolution）</h4><p>逐点卷积的实质就是卷积核大小为1的普通卷积。逐通道卷积完成后的通道数量与输入层的通道数相同，无法改变通道数。而且这种运算对输入层的每个通道独立进行卷积运算，没有有效的利用不同通道在相同空间位置上的特征信息。因此需要逐点卷积来将这些特征图进行组合生成新的特征图。</p><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,6,kernel=1,padding=1,stride=1,groups=1，bias=False)</code>，输出：<code>(1,6,5,5)</code>，FLOPs：<code>(2×4×1×1-1)×5×5×1×6=1050</code>，参数量：<code>(4×1×1+0)×1×6=24</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE4.svg" alt="绘图4"></p><h4 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h4><p>FLOPs：1700+1050=2750，参数量：36+24=60。</p><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://www.zhihu.com/question/65305385">CNN 模型所需的计算力（flops）和参数（parameters）数量是怎么计算的？ - 知乎 (zhihu.com)</a></p><p><a href="https://zhuanlan.zhihu.com/p/92134485">深度可分离卷积 - 知乎 (zhihu.com)</a></p><p><a href="https://zhuanlan.zhihu.com/p/355123135">深度可分离卷积(Depthwise Separable Convolution)和分组卷积(Group Convolution)的理解及PyTorch实现 - 知乎 (zhihu.com)</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 专业学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 分组卷积 深度可分离卷积 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>人物志——第一个</title>
       <link href="posts/43432.html"/>
       <url>posts/43432.html</url>
@@ -150,6 +125,31 @@
         <tags>
             
             <tag> 个人 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深度可分离卷积</title>
+      <link href="posts/47786.html"/>
+      <url>posts/47786.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近写论文过程中用到了轻量级网络，其中深度可分离卷积可以大幅减少传统卷积的参数。本文记录深度可分离卷积的原理和参数计算。</p><h3 id="FLOPs与参数量"><a href="#FLOPs与参数量" class="headerlink" title="FLOPs与参数量"></a>FLOPs与参数量</h3><p><strong>FLOPs</strong>   用来衡量模型的时间复杂度，即计算机的算力。</p><ul><li>卷积层计算方式：$(2\times C_{in}\times k^{2}- 1) \times H\times W\times  C_{out}  = (C_{in}\times k^{2}- 1+ C_{in}\times k^{2})\times H\times W\times  C_{out}$，$C_{in}$输入通道，$C_{out}$输出通道，$k$为卷积大小，$H$和$W$分别为特征图的高和宽，当无偏置时，有$-1$，有偏置，无$-1$。</li><li>全连接层计算方式：$(2\times N_{in}-1)\times N_{out} $，$N_{in}$为输入神经元数，$N_{out}$为输出神经元数。</li><li>LSTM层计算方式：$(E+H) \times H \times 4 \times2$，$E$为词向量维度，即$Input _ size$，$H$为隐藏神经元个数，即$Hidden _ size$。</li><li>GRU层计算方式：$(E+H) \times H \times 3 \times2$。</li></ul><p><strong>参数量</strong>  用来衡量模型的空间复杂度，即内存资源的消耗。</p><ul><li>卷积层计算方式：$( C_{in}\times k^{2}+ 1)\times  C_{out}$，当无偏置时，无$+1$，有偏置，有$+1$。</li><li>全连接层计算方式：$( N_{in}+1)\times N_{out} $。</li><li>LSTM层计算方式：$((E+H \times H) +H)\times 4$。</li><li>GRU层计算方式：$((E+H \times H) +H)\times 3$。</li></ul><h3 id="常规卷积"><a href="#常规卷积" class="headerlink" title="常规卷积"></a>常规卷积</h3><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,6,kernel=3,padding=1,stride=1,groups=1，bias=False)</code>，输出：<code>(1,6,5,5)</code>，FLOPs：<code>(2×4×3×3-1)×5×5×6=10650</code>，参数量：<code>(4×3×3+0)×6=216</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE1.svg" alt="绘图1"></p><h3 id="分组卷积（Group-Convolution）"><a href="#分组卷积（Group-Convolution）" class="headerlink" title="分组卷积（Group Convolution）"></a>分组卷积（<strong>Group Convolution</strong>）</h3><p>分组卷积,即ResNeXt,是受到Inception和AlexNet的启发。Inception 的论文中提到,对于卷积来说,卷积核可以看做一个<strong>三维的滤波器</strong>:通道维+空间维(Feature Map 的宽和高),常规的卷积操作其实就是实现<strong>通道相关性</strong>和<strong>空间相关性</strong>的<strong>联合映射</strong>。Inception 模块的背后存在这样的一种假设:卷积层通道间的相关性和空间相关性是可以<strong>退耦合</strong>的,将它们分开映射,能达到更好的效果.具体来说,经过不同卷积路径得到的特征图之间的耦合性较低,关注的主要特征不同,可以得到互为补充的特征图,以更完整的表示图像。</p><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,6,kernel=3,padding=1,stride=1,groups=2，bias=False)</code>，输出：<code>(1,6,5,5)</code>，FLOPs：<code>(2×2×3×3-1)×5×5×1×3×2=5250</code>，参数量：<code>(2×3×3+0)×1×3×2=108</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE2.svg" alt="绘图2"></p><h3 id="深度可分离卷积（Depthwise-Separable-Convolution）"><a href="#深度可分离卷积（Depthwise-Separable-Convolution）" class="headerlink" title="深度可分离卷积（Depthwise Separable Convolution）"></a>深度可分离卷积（<strong>Depthwise Separable Convolution</strong>）</h3><h4 id="逐通道卷积（Depthwise-Convolution）"><a href="#逐通道卷积（Depthwise-Convolution）" class="headerlink" title="逐通道卷积（Depthwise Convolution）"></a>逐通道卷积（Depthwise Convolution）</h4><p>逐通道卷积的实质就是输出通道和分组等于输入通道的分组卷积。</p><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,4,kernel=3,padding=1,stride=1,groups=4，bias=False)</code>，输出：<code>(1,4,5,5)</code>，FLOPs：<code>(2×1×3×3-1)×5×5×1×4=1700</code>，参数量：<code>(1×3×3+0)×1×4=36</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE3.svg" alt="绘图3"></p><h4 id="逐点卷积（Pointwise-Convolution）"><a href="#逐点卷积（Pointwise-Convolution）" class="headerlink" title="逐点卷积（Pointwise Convolution）"></a>逐点卷积（Pointwise Convolution）</h4><p>逐点卷积的实质就是卷积核大小为1的普通卷积。逐通道卷积完成后的通道数量与输入层的通道数相同，无法改变通道数。而且这种运算对输入层的每个通道独立进行卷积运算，没有有效的利用不同通道在相同空间位置上的特征信息。因此需要逐点卷积来将这些特征图进行组合生成新的特征图。</p><p>输入：<code>(1,4,5,5)</code>，卷积核：<code>Conv2d(4,6,kernel=1,padding=1,stride=1,groups=1，bias=False)</code>，输出：<code>(1,6,5,5)</code>，FLOPs：<code>(2×4×1×1-1)×5×5×1×6=1050</code>，参数量：<code>(4×1×1+0)×1×6=24</code>。</p><p><img src="https://picture-1304304669.cos.ap-nanjing.myqcloud.com/%E7%BB%98%E5%9B%BE4.svg" alt="绘图4"></p><h4 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h4><p>FLOPs：1700+1050=2750，参数量：36+24=60。</p><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://www.zhihu.com/question/65305385">CNN 模型所需的计算力（flops）和参数（parameters）数量是怎么计算的？ - 知乎 (zhihu.com)</a></p><p><a href="https://zhuanlan.zhihu.com/p/92134485">深度可分离卷积 - 知乎 (zhihu.com)</a></p><p><a href="https://zhuanlan.zhihu.com/p/355123135">深度可分离卷积(Depthwise Separable Convolution)和分组卷积(Group Convolution)的理解及PyTorch实现 - 知乎 (zhihu.com)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 专业学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分组卷积 深度可分离卷积 </tag>
             
         </tags>
       
