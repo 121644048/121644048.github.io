@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>hexo pro测试</title>
+      <link href="posts/787a.html"/>
+      <url>posts/787a.html</url>
+      
+        <content type="html"><![CDATA[<p>测试</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Pytorch中LSTM输入输出的参数含义</title>
       <link href="posts/8ed.html"/>
       <url>posts/8ed.html</url>
