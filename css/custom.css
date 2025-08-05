@@ -86,11 +86,11 @@ div#category{
 
 /*鼠标样式*/
 body {
-    cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur),
+    cursor: url(
         default;
 }
 img {
-    cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur),
+    cursor: url(
         default;
 }
 /*隐藏指定卡片*/
